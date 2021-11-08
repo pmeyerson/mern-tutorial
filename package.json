@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-express-mongodb",
+  "version": "1.0.0",
+  "description": "tutorial",
+  "main": "index.js",
+  "repository": "https://github.com/pmeyerson/nodejs-express-mongodb-tutorial",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
