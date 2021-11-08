@@ -1,5 +1,7 @@
 const db = require("../models");
 const Tutorial = db.tutorials;
+var _ = require('lodash');
+
 
 const getPagination = (page, size) => {
   const limit = size ? +size : 3;
@@ -40,8 +42,9 @@ exports.create = (req, res) => {
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const { page, size, title } = req.query;
+  var safe_title = _.escapeRegExp(title)
   var condition = title
-    ? { title: { $regex: new RegExp(title), $options: "i" } }
+    ? { title: { $regex: new RegExp(safe_title), $options: "i" } }
     : {};
 
   const { limit, offset } = getPagination(page, size);
