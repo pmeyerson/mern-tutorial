@@ -1,6 +1,10 @@
 const db = require("../models");
 const Tutorial = db.tutorials;
 
+var _ = require('lodash');
+var sanitize = require('mongo-sanitize');
+
+
 const getPagination = (page, size) => {
   const limit = size ? +size : 3;
   const offset = page ? page * limit : 0;
@@ -18,9 +22,9 @@ exports.create = (req, res) => {
 
   // Create a Tutorial
   const tutorial = new Tutorial({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
+    title: sanitize(req.body.title),
+    description: sanitize(req.body.description),
+    published: sanitize(req.body.published) ? sanitize(req.body.published) : false,
   });
 
   // Save Tutorial in the database
@@ -65,7 +69,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
-  const id = req.params.id;
+  const id = sanitize(req.params.id);
 
   Tutorial.findById(id)
     .then((data) => {
@@ -88,9 +92,9 @@ exports.update = (req, res) => {
     });
   }
 
-  const id = req.params.id;
+  const id = sanitize(req.params.id);
 
-  Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Tutorial.findByIdAndUpdate(id, sanitize(req.body), { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -107,7 +111,7 @@ exports.update = (req, res) => {
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  const id = sanitize(req.params.id);
 
   Tutorial.findByIdAndRemove(id, { useFindAndModify: false })
     .then((data) => {
