@@ -96,8 +96,9 @@ exports.update = (req, res) => {
   }
 
   const id = sanitize(req.params.id);
+  const body = sanitize(req.params.body)
 
-  Tutorial.findByIdAndUpdate(id, sanitize(req.body), { useFindAndModify: false })
+  Tutorial.findByIdAndUpdate(id, body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
