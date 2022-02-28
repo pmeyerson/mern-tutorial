@@ -12,7 +12,7 @@
     "lodash": "^4.17.21",
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^6.0.14",
-    "mongoose-paginate-v2": "^1.4.3",
+    "mongoose-paginate-v2": "^1.6.3",
     "node": ">=17.2.0"
   }
 }
