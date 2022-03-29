@@ -13,6 +13,6 @@
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^6.0.14",
     "mongoose-paginate-v2": "^1.4.3",
-    "node": ">=17.2.0"
+    "node": ">=17.7.2"
   }
 }
